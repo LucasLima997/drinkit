@@ -85,12 +85,13 @@ public class CheckoutController {
         CustomerOrder order = new CustomerOrder(customerName, customerEmail, deliveryAddress, total);
 
         for (CartViewItem item : cartItems) {
-            OrderItem orderItem = new OrderItem(
-                    item.getProduct().getName(),
-                    item.getQuantity(),
-                    item.getProduct().getPrice(),
-                    item.getSubtotal()
-            );
+           OrderItem orderItem = new OrderItem(
+        item.getProduct().getId(),
+        item.getProduct().getName(),
+        item.getQuantity(),
+        item.getProduct().getPrice(),
+        item.getSubtotal()
+);
 
             order.addItem(orderItem);
         }

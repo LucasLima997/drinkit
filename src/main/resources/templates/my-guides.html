@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Guides</title>
+  </head>
+  <body>
+    <h1>My Digital Guides</h1>
+
+    <p>
+      These guides are available because your simulated order was confirmed.
+    </p>
+
+    <h2>
+      Order ID:
+      <span th:text="${order.id}">1</span>
+    </h2>
+
+    <div th:each="item : ${order.items}">
+      <hr />
+
+      <h3 th:text="${item.productName}">Product Name</h3>
+
+      <p>
+        Quantity:
+        <span th:text="${item.quantity}">1</span>
+      </p>
+
+      <a th:href="@{/guides/product/{id}(id=${item.productId})}">
+        Open Digital Guide
+      </a>
+    </div>
+
+    <br />
+
+    <a href="/products">Continue Shopping</a>
+    <br />
+    <a href="/">Back to Home</a>
+  </body>
+</html>

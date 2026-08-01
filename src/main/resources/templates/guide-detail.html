@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Digital Guide</title>
+  </head>
+  <body>
+    <h1 th:text="${product.name}">Product Guide</h1>
+
+    <p>This is the digital guide for your selected DrinKit product.</p>
+
+    <h2>Basic Preparation Guide</h2>
+
+    <ol>
+      <li>Prepare all ingredients and tools before starting.</li>
+      <li>Read the product instructions carefully.</li>
+      <li>Follow the step-by-step guide to prepare the drink.</li>
+      <li>Serve the drink in a suitable glass.</li>
+      <li>Enjoy responsibly.</li>
+    </ol>
+
+    <h2>Product Information</h2>
+
+    <p>
+      <strong>Category:</strong>
+      <span th:text="${product.category}">Category</span>
+    </p>
+
+    <p th:if="${product.alcoholic}">
+      This guide is related to an alcoholic cocktail kit. Please drink
+      responsibly.
+    </p>
+
+    <p th:unless="${product.alcoholic}">
+      This guide is for a non-alcoholic mocktail kit.
+    </p>
+
+    <h2>Video Guide</h2>
+
+    <p>
+      A video tutorial could be linked here in the final version of the system.
+    </p>
+
+    <a href="/products">Back to Products</a>
+    <br />
+    <a href="/">Back to Home</a>
+  </body>
+</html>

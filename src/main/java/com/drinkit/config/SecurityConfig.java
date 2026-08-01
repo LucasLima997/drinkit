@@ -21,6 +21,8 @@ public class SecurityConfig {
                     "/checkout",
                     "/checkout/**",
                     "/order-confirmation/**",
+                    "/orders/**",
+                    "/guides/**",
                     "/css/**",
                     "/js/**",
                     "/images/**"
@@ -33,5 +35,3 @@ public class SecurityConfig {
         return http.build();
     }
 }
-
-

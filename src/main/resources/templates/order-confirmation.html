@@ -41,10 +41,12 @@
     <div th:each="item : ${order.items}">
       <hr />
       <h3 th:text="${item.productName}">Product Name</h3>
+
       <p>
         Quantity:
         <span th:text="${item.quantity}">1</span>
       </p>
+
       <p>
         Subtotal: €
         <span th:text="${item.subtotal}">0.00</span>
@@ -55,6 +57,10 @@
 
     <h2>Total: €<span th:text="${order.totalPrice}">0.00</span></h2>
 
+    <a th:href="@{/orders/{id}/guides(id=${order.id})}"
+      >Access Digital Guides</a
+    >
+    <br />
     <a href="/products">Continue Shopping</a>
     <br />
     <a href="/">Back to Home</a>
