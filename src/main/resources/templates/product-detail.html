@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Product Details</title>
+  </head>
+  <body>
+    <h1 th:text="${product.name}">Product Name</h1>
+
+    <p th:text="${product.description}">Product description</p>
+
+    <p>
+      <strong>Category:</strong>
+      <span th:text="${product.category}">Category</span>
+    </p>
+
+    <p>
+      <strong>Price:</strong>
+      €<span th:text="${product.price}">0.00</span>
+    </p>
+
+    <p th:if="${product.alcoholic}">
+      This kit contains alcohol-related content. Please drink responsibly.
+    </p>
+
+    <p th:unless="${product.alcoholic}">
+      This is a non-alcoholic mocktail kit.
+    </p>
+
+    <a th:href="@{/cart/add/{id}(id=${product.id})}">Add to Cart</a>
+
+    <br /><br />
+
+    <a href="/products">Back to Products</a>
+    <br />
+    <a href="/">Back to Home</a>
+  </body>
+</html>
