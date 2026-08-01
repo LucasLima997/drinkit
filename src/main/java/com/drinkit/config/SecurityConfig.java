@@ -12,7 +12,19 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/products", "/products/**", "/cart", "/cart/**", "/css/**", "/js/**", "/images/**").permitAll()
+                .requestMatchers(
+                    "/",
+                    "/products",
+                    "/products/**",
+                    "/cart",
+                    "/cart/**",
+                    "/checkout",
+                    "/checkout/**",
+                    "/order-confirmation/**",
+                    "/css/**",
+                    "/js/**",
+                    "/images/**"
+                ).permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(login -> login.permitAll())

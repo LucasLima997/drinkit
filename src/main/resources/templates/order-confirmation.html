@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Order Confirmation</title>
+  </head>
+  <body>
+    <h1>Order Confirmed</h1>
+
+    <p>Your simulated order has been successfully confirmed.</p>
+
+    <h2>Order Details</h2>
+
+    <p>
+      <strong>Order ID:</strong>
+      <span th:text="${order.id}">1</span>
+    </p>
+
+    <p>
+      <strong>Customer Name:</strong>
+      <span th:text="${order.customerName}">Customer Name</span>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <span th:text="${order.customerEmail}">email@example.com</span>
+    </p>
+
+    <p>
+      <strong>Delivery Address:</strong>
+      <span th:text="${order.deliveryAddress}">Address</span>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <span th:text="${order.status}">CONFIRMED</span>
+    </p>
+
+    <h2>Items</h2>
+
+    <div th:each="item : ${order.items}">
+      <hr />
+      <h3 th:text="${item.productName}">Product Name</h3>
+      <p>
+        Quantity:
+        <span th:text="${item.quantity}">1</span>
+      </p>
+      <p>
+        Subtotal: €
+        <span th:text="${item.subtotal}">0.00</span>
+      </p>
+    </div>
+
+    <hr />
+
+    <h2>Total: €<span th:text="${order.totalPrice}">0.00</span></h2>
+
+    <a href="/products">Continue Shopping</a>
+    <br />
+    <a href="/">Back to Home</a>
+  </body>
+</html>
