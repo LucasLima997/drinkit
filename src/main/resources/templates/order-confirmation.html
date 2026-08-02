@@ -2,67 +2,95 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Order Confirmation</title>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
+
   <body>
-    <h1>Order Confirmed</h1>
+    <div class="app-shell confirmation-page">
+      <div class="brand-bar detail-brand">
+        <img
+          src="/images/drinkit-logo.png"
+          alt="DrinKit Logo"
+          class="brand-logo detail-logo"
+        />
 
-    <p>Your simulated order has been successfully confirmed.</p>
+        <div class="brand-text">
+          <h1 class="brand-name detail-brand-name">DrinKit</h1>
+        </div>
+      </div>
 
-    <h2>Order Details</h2>
+      <div class="confirmation-card">
+        <div class="confirmation-icon">✓</div>
 
-    <p>
-      <strong>Order ID:</strong>
-      <span th:text="${order.id}">1</span>
-    </p>
+        <h1>Order Confirmed</h1>
 
-    <p>
-      <strong>Customer Name:</strong>
-      <span th:text="${order.customerName}">Customer Name</span>
-    </p>
+        <p>Your simulated order has been placed successfully.</p>
 
-    <p>
-      <strong>Email:</strong>
-      <span th:text="${order.customerEmail}">email@example.com</span>
-    </p>
+        <div class="order-pill">
+          Order #<span th:text="${order.id}">1</span>
+        </div>
+      </div>
 
-    <p>
-      <strong>Delivery Address:</strong>
-      <span th:text="${order.deliveryAddress}">Address</span>
-    </p>
+      <div class="confirmation-info-card">
+        <div class="info-row">
+          <span>Name</span>
+          <strong th:text="${order.customerName}">Customer Name</strong>
+        </div>
 
-    <p>
-      <strong>Status:</strong>
-      <span th:text="${order.status}">CONFIRMED</span>
-    </p>
+        <div class="info-row">
+          <span>Email</span>
+          <strong th:text="${order.customerEmail}">email@example.com</strong>
+        </div>
 
-    <h2>Items</h2>
+        <div class="info-row">
+          <span>Status</span>
+          <strong th:text="${order.status}">CONFIRMED</strong>
+        </div>
+      </div>
 
-    <div th:each="item : ${order.items}">
-      <hr />
-      <h3 th:text="${item.productName}">Product Name</h3>
+      <div class="checkout-items-card">
+        <div class="checkout-section-title">Items</div>
 
-      <p>
-        Quantity:
-        <span th:text="${item.quantity}">1</span>
-      </p>
+        <div class="checkout-item" th:each="item : ${order.items}">
+          <div class="checkout-item-info">
+            <div class="checkout-item-title" th:text="${item.productName}">
+              Product Name
+            </div>
 
-      <p>
-        Subtotal: €
-        <span th:text="${item.subtotal}">0.00</span>
-      </p>
+            <div class="checkout-item-meta">
+              Qty: <span th:text="${item.quantity}">1</span>
+            </div>
+
+            <div class="checkout-item-price">
+              €<span th:text="${item.subtotal}">0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-total confirmation-total">
+          <span>Total</span>
+          <strong>€<span th:text="${order.totalPrice}">0.00</span></strong>
+        </div>
+      </div>
+
+      <a
+        th:href="@{/orders/{id}/guides(id=${order.id})}"
+        class="primary-button"
+      >
+        Access Digital Guides
+      </a>
+
+      <a href="/products" class="secondary-button"> Continue Shopping </a>
+
+      <div class="bottom-nav">
+        <a href="/">⌂</a>
+        <a href="/products">🍹</a>
+        <a href="/cart">🛒</a>
+        <a href="/products">♡</a>
+        <a href="/">◠</a>
+      </div>
     </div>
-
-    <hr />
-
-    <h2>Total: €<span th:text="${order.totalPrice}">0.00</span></h2>
-
-    <a th:href="@{/orders/{id}/guides(id=${order.id})}"
-      >Access Digital Guides</a
-    >
-    <br />
-    <a href="/products">Continue Shopping</a>
-    <br />
-    <a href="/">Back to Home</a>
   </body>
 </html>

@@ -2,47 +2,84 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Digital Guide</title>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
+
   <body>
-    <h1 th:text="${product.name}">Product Guide</h1>
+    <div class="app-shell guide-detail-page">
+      <div class="brand-bar detail-brand">
+        <img
+          src="/images/drinkit-logo.png"
+          alt="DrinKit Logo"
+          class="brand-logo detail-logo"
+        />
 
-    <p>This is the digital guide for your selected DrinKit product.</p>
+        <div class="brand-text">
+          <h1 class="brand-name detail-brand-name">DrinKit</h1>
+        </div>
+      </div>
 
-    <h2>Basic Preparation Guide</h2>
+      <div class="guides-header">
+        <a href="/products" class="back-link">‹ Products</a>
+        <h1>Guide</h1>
+      </div>
 
-    <ol>
-      <li>Prepare all ingredients and tools before starting.</li>
-      <li>Read the product instructions carefully.</li>
-      <li>Follow the step-by-step guide to prepare the drink.</li>
-      <li>Serve the drink in a suitable glass.</li>
-      <li>Enjoy responsibly.</li>
-    </ol>
+      <div class="guide-product-card">
+        <img
+          class="guide-product-image"
+          th:src="${product.imageUrl}"
+          alt="Product image"
+        />
 
-    <h2>Product Information</h2>
+        <div>
+          <div class="guide-product-title" th:text="${product.name}">
+            Product Name
+          </div>
 
-    <p>
-      <strong>Category:</strong>
-      <span th:text="${product.category}">Category</span>
-    </p>
+          <div class="guide-product-meta">Digital preparation guide</div>
+        </div>
+      </div>
 
-    <p th:if="${product.alcoholic}">
-      This guide is related to an alcoholic cocktail kit. Please drink
-      responsibly.
-    </p>
+      <div class="guide-image-card">
+        <img
+          th:if="${#strings.containsIgnoreCase(product.name, 'Virgin')}"
+          src="/images/guide_virgin_mojito.png"
+          alt="Virgin Mojito Guide"
+          class="guide-png-image"
+        />
 
-    <p th:unless="${product.alcoholic}">
-      This guide is for a non-alcoholic mocktail kit.
-    </p>
+        <img
+          th:if="${#strings.containsIgnoreCase(product.name, 'Margarita')}"
+          src="/images/guide_margarita.png"
+          alt="Margarita Guide"
+          class="guide-png-image"
+        />
 
-    <h2>Video Guide</h2>
+        <img
+          th:if="${#strings.containsIgnoreCase(product.name, 'Mojito') and !#strings.containsIgnoreCase(product.name, 'Virgin')}"
+          src="/images/guide_mojito.png"
+          alt="Mojito Guide"
+          class="guide-png-image"
+        />
+      </div>
 
-    <p>
-      A video tutorial could be linked here in the final version of the system.
-    </p>
+      <div class="guide-actions">
+        <a th:href="@{/cart/add/{id}(id=${product.id})}" class="primary-button">
+          Add Kit Again
+        </a>
 
-    <a href="/products">Back to Products</a>
-    <br />
-    <a href="/">Back to Home</a>
+        <a href="/products" class="secondary-button"> Browse Products </a>
+      </div>
+
+      <div class="bottom-nav">
+        <a href="/">⌂</a>
+        <a href="/products">🍹</a>
+        <a href="/cart">🛒</a>
+        <a href="/products">♡</a>
+        <a href="/">◠</a>
+      </div>
+    </div>
   </body>
 </html>

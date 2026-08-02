@@ -2,37 +2,66 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Product Details</title>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
+
   <body>
-    <h1 th:text="${product.name}">Product Name</h1>
+    <div class="app-shell detail-page">
+      <div class="brand-bar detail-brand">
+        <img src="/images/drinkit-logo.png" alt="DrinKit Logo" class="brand-logo detail-logo" />
 
-    <p th:text="${product.description}">Product description</p>
+        <div class="brand-text">
+          <h1 class="brand-name detail-brand-name">DrinKit</h1>
+        </div>
+      </div>
 
-    <p>
-      <strong>Category:</strong>
-      <span th:text="${product.category}">Category</span>
-    </p>
+      <a href="/products" class="back-link">‹ Back to Products</a>
 
-    <p>
-      <strong>Price:</strong>
-      €<span th:text="${product.price}">0.00</span>
-    </p>
+      <div class="detail-image-wrapper compact-detail-image portrait-drink-image">
+        <img
+          class="detail-image"
+          th:src="${product.imageUrl}"
+          alt="Product image"
+        />
+      </div>
 
-    <p th:if="${product.alcoholic}">
-      This kit contains alcohol-related content. Please drink responsibly.
-    </p>
+      <div class="detail-card compact-detail-card product-info-compact">
+        <h1 class="detail-title compact-detail-title" th:text="${product.name}">
+          Product Name
+        </h1>
 
-    <p th:unless="${product.alcoholic}">
-      This is a non-alcoholic mocktail kit.
-    </p>
+        <p class="detail-description compact-detail-description" th:text="${product.description}">
+          Product description
+        </p>
 
-    <a th:href="@{/cart/add/{id}(id=${product.id})}">Add to Cart</a>
+        <div class="responsible-box" th:if="${product.alcoholic}">
+          Drink responsibly.
+        </div>
 
-    <br /><br />
+        <div class="responsible-box mocktail-box" th:unless="${product.alcoholic}">
+          Non-alcoholic mocktail kit.
+        </div>
 
-    <a href="/products">Back to Products</a>
-    <br />
-    <a href="/">Back to Home</a>
+        <div class="compact-buy-row">
+          <div class="detail-price">
+            €<span th:text="${product.price}">0.00</span>
+          </div>
+
+          <a th:href="@{/cart/add/{id}(id=${product.id})}" class="compact-cart-button">
+            Add to Cart
+          </a>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <a href="/">⌂</a>
+        <a href="/products">🍹</a>
+        <a href="/cart">🛒</a>
+        <a href="/products">♡</a>
+        <a href="/">◠</a>
+      </div>
+    </div>
   </body>
 </html>

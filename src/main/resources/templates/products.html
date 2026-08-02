@@ -2,39 +2,90 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DrinKit Products</title>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
+
   <body>
-    <h1>DrinKit Products</h1>
-    <p>Browse our cocktail and mocktail kits.</p>
+    <div class="app-shell">
+      <div class="brand-bar">
+        <img
+          src="/images/drinkit-logo.png"
+          alt="DrinKit Logo"
+          class="brand-logo"
+        />
 
-    <div th:each="product : ${products}">
-      <hr />
+        <div class="brand-text">
+          <h1 class="brand-name">DrinKit</h1>
+          <div class="brand-tagline">Browse our kits</div>
+        </div>
+      </div>
+      <div class="search-box">🔍 Search cocktail or mocktail kits</div>
 
-      <h2 th:text="${product.name}">Product Name</h2>
+      <div class="quick-actions">
+        <a class="quick-chip" href="/">⌂ Home</a>
+        <a class="quick-chip" href="/cart">🛒 Cart</a>
+        <div class="quick-chip">♡ Favorites</div>
+      </div>
 
-      <p th:text="${product.description}">Product description</p>
+      <div class="section-header">
+        <h2>Available Kits</h2>
+        <div class="section-arrow">›</div>
+      </div>
 
-      <p>
-        <strong>Category:</strong>
-        <span th:text="${product.category}">Category</span>
-      </p>
+      <div class="product-list">
+        <div class="product-app-card" th:each="product : ${products}">
+          <img
+            class="product-app-image"
+            th:src="${product.imageUrl}"
+            alt="Product image"
+          />
 
-      <p>
-        <strong>Price:</strong>
-        €<span th:text="${product.price}">0.00</span>
-      </p>
+          <div class="product-app-info">
+            <div class="product-app-title" th:text="${product.name}">
+              Product Name
+            </div>
 
-      <p th:if="${product.alcoholic}">
-        Contains alcohol. Please drink responsibly.
-      </p>
+            <div class="product-app-category" th:text="${product.category}">
+              Category
+            </div>
 
-      <p th:unless="${product.alcoholic}">Non-alcoholic mocktail kit.</p>
+            <p class="product-app-description" th:text="${product.description}">
+              Product description
+            </p>
 
-      <a th:href="@{/products/{id}(id=${product.id})}">View Details</a>
+            <div class="product-app-bottom">
+              <div class="product-app-price">
+                €<span th:text="${product.price}">0.00</span>
+              </div>
+
+              <a
+                class="product-view-button"
+                th:href="@{/products/{id}(id=${product.id})}"
+              >
+                View
+              </a>
+            </div>
+
+            <div class="product-warning" th:if="${product.alcoholic}">
+              Drink responsibly
+            </div>
+
+            <div class="product-mocktail" th:unless="${product.alcoholic}">
+              Non-alcoholic mocktail kit.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <a href="/">⌂</a>
+        <a href="/products">◌</a>
+        <a href="/cart">🛒</a>
+        <a href="/checkout">🔔</a>
+        <a href="/products">◠</a>
+      </div>
     </div>
-
-    <br />
-    <a href="/">Back to Home</a>
   </body>
 </html>

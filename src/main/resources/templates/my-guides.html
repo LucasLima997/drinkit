@@ -2,39 +2,65 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>My Guides</title>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
+
   <body>
-    <h1>My Digital Guides</h1>
+    <div class="app-shell guides-page">
+      <div class="brand-bar detail-brand">
+        <img
+          src="/images/drinkit-logo.png"
+          alt="DrinKit Logo"
+          class="brand-logo detail-logo"
+        />
 
-    <p>
-      These guides are available because your simulated order was confirmed.
-    </p>
+        <div class="brand-text">
+          <h1 class="brand-name detail-brand-name">DrinKit</h1>
+        </div>
+      </div>
 
-    <h2>
-      Order ID:
-      <span th:text="${order.id}">1</span>
-    </h2>
+      <div class="guides-header">
+        <a href="/products" class="back-link">‹ Products</a>
+        <h1>My Guides</h1>
+      </div>
 
-    <div th:each="item : ${order.items}">
-      <hr />
+      <div class="guides-order-card">
+        <span>Order</span>
+        <strong>#<span th:text="${order.id}">1</span></strong>
+      </div>
 
-      <h3 th:text="${item.productName}">Product Name</h3>
+      <div class="guides-list">
+        <div class="guide-access-card" th:each="item : ${order.items}">
+          <div class="guide-access-icon">🍹</div>
 
-      <p>
-        Quantity:
-        <span th:text="${item.quantity}">1</span>
-      </p>
+          <div class="guide-access-info">
+            <div class="guide-access-title" th:text="${item.productName}">
+              Product Name
+            </div>
 
-      <a th:href="@{/guides/product/{id}(id=${item.productId})}">
-        Open Digital Guide
-      </a>
+            <div class="guide-access-meta">Digital preparation guide</div>
+
+            <a
+              th:href="@{/guides/product/{id}(id=${item.productId})}"
+              class="guide-open-button"
+            >
+              Open Guide
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="/products" class="secondary-button"> Continue Shopping </a>
+
+      <div class="bottom-nav">
+        <a href="/">⌂</a>
+        <a href="/products">🍹</a>
+        <a href="/cart">🛒</a>
+        <a href="/products">♡</a>
+        <a href="/">◠</a>
+      </div>
     </div>
-
-    <br />
-
-    <a href="/products">Continue Shopping</a>
-    <br />
-    <a href="/">Back to Home</a>
   </body>
 </html>

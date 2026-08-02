@@ -2,12 +2,141 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DrinKit</title>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
-  <body>
-    <h1>Welcome to DrinKit</h1>
-    <p>Cocktail and Mocktail Kits Made Simple.</p>
 
-    <a href="/products">View Products</a>
+  <body>
+    <div class="app-shell">
+      <div class="brand-bar">
+        <img
+          src="/images/drinkit-logo.png"
+          alt="DrinKit Logo"
+          class="brand-logo"
+        />
+
+        <div class="brand-text">
+          <h1 class="brand-name">DrinKit</h1>
+          <div class="brand-tagline">Cocktail & Mocktail Kits</div>
+        </div>
+      </div>
+
+      <div class="search-box">🔍 Search kits, guides and mocktails</div>
+
+      <div class="quick-actions">
+        <a class="quick-chip" href="/products">🍹 Products</a>
+        <a class="quick-chip" href="/cart">🛒 Cart</a>
+        <a class="quick-chip" href="/products">📋 Orders</a>
+      </div>
+
+      <div class="hero-banner">
+        <div>
+          <div class="hero-left">Mix, Sip & Enjoy</div>
+          <div class="hero-subtitle">
+            Fun drink kits with simple digital guides for home preparation.
+          </div>
+        </div>
+
+        <img
+          src="/images/mojito.jpg"
+          alt="Mojito drink"
+          class="hero-drink-image"
+        />
+      </div>
+
+      <div class="section-header">
+        <h2>Menu</h2>
+        <div class="section-arrow">›</div>
+      </div>
+
+      <div class="menu-row">
+        <a href="/products/1" class="menu-item">
+          <div class="menu-circle">
+            <img src="/images/mojito.jpg" alt="Mojito" />
+          </div>
+          <span>Mojito</span>
+        </a>
+
+        <a href="/products/2" class="menu-item">
+          <div class="menu-circle">
+            <img src="/images/margarita.jpg" alt="Margarita" />
+          </div>
+          <span>Margarita</span>
+        </a>
+
+        <a href="/products/3" class="menu-item">
+          <div class="menu-circle">
+            <img src="/images/virgin-mojito.jpg" alt="Virgin Mojito" />
+          </div>
+          <span>Virgin Mojito</span>
+        </a>
+      </div>
+
+      <div class="section-header">
+        <h2>Popular Kits</h2>
+        <a href="/products" class="section-arrow">See all</a>
+      </div>
+
+      <div class="home-product-grid">
+        <a href="/products/1" class="home-product-card">
+          <img
+            src="/images/mojito.jpg"
+            alt="Mojito Starter Kit"
+            class="home-product-image"
+          />
+
+          <div class="home-product-info">
+            <div class="home-product-title">Mojito Starter Kit</div>
+            <div class="home-product-description">
+              Fresh mint, lime and a simple guide for a classic Mojito.
+            </div>
+            <div class="home-product-price">€29.99</div>
+          </div>
+        </a>
+
+        <a href="/products/2" class="home-product-card">
+          <img
+            src="/images/margarita.jpg"
+            alt="Margarita Kit"
+            class="home-product-image"
+          />
+
+          <div class="home-product-info">
+            <div class="home-product-title">Margarita Kit</div>
+            <div class="home-product-description">
+              A bright cocktail kit with simple step-by-step preparation.
+            </div>
+            <div class="home-product-price">€32.99</div>
+          </div>
+        </a>
+
+        <a href="/products/3" class="home-product-card">
+          <img
+            src="/images/virgin-mojito.jpg"
+            alt="Virgin Mojito Mocktail Kit"
+            class="home-product-image"
+          />
+
+          <div class="home-product-info">
+            <div class="home-product-title">Virgin Mojito</div>
+            <div class="home-product-description">
+              A refreshing non-alcoholic option for mocktail lovers.
+            </div>
+            <div class="home-product-price">€24.99</div>
+          </div>
+        </a>
+      </div>
+
+      <a href="/products" class="primary-button">Browse All Products</a>
+
+      <div class="bottom-nav">
+        <a href="/">⌂</a>
+        <a href="/products">🍹</a>
+        <a href="/cart">🛒</a>
+        <a href="/products">♡</a>
+        <a href="/">◠</a>
+      </div>
+    </div>
   </body>
 </html>

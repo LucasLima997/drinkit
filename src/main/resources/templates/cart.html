@@ -2,49 +2,98 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>Shopping Cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
+
   <body>
-    <h1>Shopping Cart</h1>
+    <div class="app-shell cart-page">
+      <div class="brand-bar detail-brand">
+        <img
+          src="/images/drinkit-logo.png"
+          alt="DrinKit Logo"
+          class="brand-logo detail-logo"
+        />
 
-    <div th:if="${#lists.isEmpty(cartItems)}">
-      <p>Your cart is empty.</p>
-      <a href="/products">Back to Products</a>
-    </div>
-
-    <div th:unless="${#lists.isEmpty(cartItems)}">
-      <div th:each="item : ${cartItems}">
-        <hr />
-
-        <h2 th:text="${item.product.name}">Product Name</h2>
-
-        <p>
-          <strong>Quantity:</strong>
-          <span th:text="${item.quantity}">1</span>
-        </p>
-
-        <p>
-          <strong>Price:</strong>
-          €<span th:text="${item.product.price}">0.00</span>
-        </p>
-
-        <p>
-          <strong>Subtotal:</strong>
-          €<span th:text="${item.subtotal}">0.00</span>
-        </p>
-
-        <a th:href="@{/cart/remove/{id}(id=${item.product.id})}">Remove</a>
+        <div class="brand-text">
+          <h1 class="brand-name detail-brand-name">DrinKit</h1>
+        </div>
       </div>
 
-      <hr />
+      <div class="cart-header">
+        <a href="/products" class="back-link">‹ Products</a>
+        <h1>Your Cart</h1>
+      </div>
 
-      <h2>Total: €<span th:text="${total}">0.00</span></h2>
+      <div th:if="${#lists.isEmpty(cartItems)}" class="empty-cart-card">
+        <div class="empty-icon">🛒</div>
+        <h2>Your cart is empty</h2>
+        <p>Choose a kit and start mixing.</p>
+        <a href="/products" class="primary-button">Browse Products</a>
+      </div>
 
-      <a href="/cart/clear">Clear Cart</a>
-      <br /><br />
-      <a href="/products">Continue Shopping</a>
-      <br /><br />
-      <a href="/checkout">Proceed to Checkout</a>
+      <div th:unless="${#lists.isEmpty(cartItems)}">
+        <div class="cart-items">
+          <div class="cart-item-card" th:each="item : ${cartItems}">
+            <img
+              class="cart-item-image"
+              th:src="${item.product.imageUrl}"
+              alt="Product image"
+            />
+
+            <div class="cart-item-info">
+              <div class="cart-item-title" th:text="${item.product.name}">
+                Product Name
+              </div>
+
+              <div class="cart-item-meta">
+                Qty: <span th:text="${item.quantity}">1</span>
+              </div>
+
+              <div class="cart-item-price">
+                €<span th:text="${item.subtotal}">0.00</span>
+              </div>
+
+              <a
+                th:href="@{/cart/remove/{id}(id=${item.product.id})}"
+                class="remove-link"
+              >
+                Remove
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-summary-card">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong>€<span th:text="${total}">0.00</span></strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Shipping</span>
+            <strong>Free</strong>
+          </div>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <strong>€<span th:text="${total}">0.00</span></strong>
+          </div>
+
+          <a href="/checkout" class="primary-button">Proceed to Checkout</a>
+
+          <a href="/cart/clear" class="clear-cart-link">Clear cart</a>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <a href="/">⌂</a>
+        <a href="/products">🍹</a>
+        <a href="/cart">🛒</a>
+        <a href="/products">♡</a>
+        <a href="/">◠</a>
+      </div>
     </div>
   </body>
 </html>
