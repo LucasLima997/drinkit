@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Products</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <div class="app-shell admin-page">
+      <div class="brand-bar detail-brand">
+        <img
+          src="/images/drinkit-logo.png"
+          alt="DrinKit Logo"
+          class="brand-logo detail-logo"
+        />
+
+        <div class="brand-text">
+          <h1 class="brand-name detail-brand-name">DrinKit</h1>
+        </div>
+      </div>
+
+      <div class="admin-header">
+        <h1>Admin</h1>
+        <a href="/admin/products/new" class="admin-add-button">Add</a>
+      </div>
+
+      <div class="admin-list">
+        <div class="admin-product-card" th:each="product : ${products}">
+          <img
+            class="admin-product-image"
+            th:src="${product.imageUrl}"
+            alt="Product image"
+          />
+
+          <div class="admin-product-info">
+            <div class="admin-product-title" th:text="${product.name}">
+              Product Name
+            </div>
+            <div class="admin-product-price">
+              €<span th:text="${product.price}">0.00</span>
+            </div>
+
+            <a
+              th:href="@{/admin/products/delete/{id}(id=${product.id})}"
+              class="remove-link"
+            >
+              Delete
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="/products" class="secondary-button">View Store</a>
+    </div>
+  </body>
+</html>

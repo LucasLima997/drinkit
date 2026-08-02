@@ -23,6 +23,7 @@ public class SecurityConfig {
                     "/order-confirmation/**",
                     "/orders/**",
                     "/guides/**",
+                    "/admin/**",
                     "/css/**",
                     "/js/**",
                     "/images/**"
